@@ -4,9 +4,17 @@
 
 int main()
 {
-	auto vec = getPrimeVector(30);
-	if (sequential_search(vec.begin(), vec.end(), 23)) {
-		std::cout << "found 23!" << '\n';
+	// 2 3 5 7 => N = 10
+	auto vec = getPrimeVector(10);
+
+	for (int prime : vec) 
+	{
+		std::cout << prime << '\n';
+	}
+	
+	if (binary_search(vec.begin(), vec.end(), 3)) 
+	{
+		std::cout << "found element\n";
 	}
 
 	return 0;
