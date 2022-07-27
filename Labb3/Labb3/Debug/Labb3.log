@@ -1,4 +1,8 @@
 ﻿  Algorithms.cpp
+  Measurement.cpp
+  Primenumbergenerator.cpp
+C:\Users\Tiimm\Documents\GitHub\labb3_dt046g\Labb3\Labb3\Primenumbergenerator.cpp(11,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tiimm\Documents\GitHub\labb3_dt046g\Labb3\Labb3\Primenumbergenerator.cpp(14,18): warning C4018: '<': signed/unsigned mismatch
   Source.cpp
   Generating Code...
-  Labb3.vcxproj -> C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Debug\Labb3.exe
+  Labb3.vcxproj -> C:\Users\Tiimm\Documents\GitHub\labb3_dt046g\Labb3\Labb3\Debug\Labb3.exe

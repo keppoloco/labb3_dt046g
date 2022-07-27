@@ -1,9 +1,11 @@
 #include "Algorithms.h"
-
+#include "Datagenerator.h"
 bool sequential_search(std::vector<int>::iterator first, std::vector<int>::iterator last, const int& key)
 {
-    for (auto iter = first; first != last; iter++) {
-        if (*iter == key) {
+    for (auto iter = first; first != last; iter++) 
+	{
+        if (*iter == key) 
+		{
             return true;
         }
     }
@@ -27,7 +29,8 @@ bool binary_search(std::vector<int>::iterator first, std::vector<int>::iterator 
 			first = mid + 1;
 		}
 
-		else {
+		else 
+		{
 			last = mid - 1;
 		}
 	}
