@@ -1,20 +1,9 @@
 #pragma once
 #ifndef DATAGENERATOR_H
 #define DATAGENERATOR_H
+#include "Node.h"
 #include <vector>
-
-struct Node {
-	Node(int data) : data(data), left(nullptr), right(nullptr) {}
-	int data;
-	Node* left;
-	Node* right;
-};
-
-struct HashNode {
-	HashNode(int data) :data(data), next(nullptr) {};
-	int data;
-	HashNode* next;
-};
+#include <algorithm>
 
 std::vector<int> GetPrimeVector(const size_t n);
 Node* CreateBinarySearchTree(std::vector<int>::iterator first, std::vector<int>::iterator last);

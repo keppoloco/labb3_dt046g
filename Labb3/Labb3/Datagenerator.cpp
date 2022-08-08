@@ -1,5 +1,7 @@
 #include "Datagenerator.h"
 
+struct Node* root = NULL;
+
 std::vector<int> GetPrimeVector(const size_t n)
 {
 	size_t size = n;
@@ -38,21 +40,57 @@ std::vector<int> GetPrimeVector(const size_t n)
 
 Node* CreateBinarySearchTree(std::vector<int>::iterator first, std::vector<int>::iterator last)
 {
-	if (first - last < 1) 
+	if (std::distance(first,last) < 1) 
 	{
-		return nullptr;
+		return root;
 	}
 
-	auto mid = first + std::distance(first, last) / 2;
-	Node* root = new Node(*mid);
+	int mid = *(first + std::distance(first, last) / 2);
 
+	if (root == NULL)
+	{
+		root = InsertNode(root, mid);
+	}
+	else
+	{
+		InsertNode(root, mid);
+	}
+
+	/*auto low = std::next(first);
+	auto high = std::next(last, -1);
+
+	root->left = CreateBinarySearchTree(low, last);
+	root->right = CreateBinarySearchTree(first, high);
+	*/
+	// Partition lower numbers than mid and higher numbers than mid separately to get median value for each node below current.
+	// t.ex. mid = 11
+	// lower => 7, 11, 13
+	//higher => 2, 3, 5
+	auto lower = partition(first, last, [mid](int x) {return x  < mid; });
+	auto higher = partition(first, last, [mid](int x) {return !(x > mid); });
+
+	CreateBinarySearchTree(first, lower);
+	CreateBinarySearchTree(higher, last);
+	
 	return root;
 }
 
-/*Node* InsertNode(Node* root, const int& data)
+Node* InsertNode(Node* root, const int& data) 
 {
-	if (!root) {
-		return new InsertNode(root, data);
+	if (root == NULL)
+	{
+		return new Node(data);
 	}
-	return nullptr;
-}*/
+
+	if (data < root->data)
+	{
+		root->left = InsertNode(root->left, data);
+	}
+	
+	else 
+	{
+		root->right = InsertNode(root->right, data);
+	}
+
+	return root;
+}

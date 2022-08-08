@@ -1,0 +1,11 @@
+﻿  Algorithms.cpp
+  Measurement.cpp
+  Datagenerator.cpp
+C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Labb3\Datagenerator.cpp(13,11): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Labb3\Datagenerator.cpp(16,18): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 189 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Labb3.vcxproj -> C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Release\Labb3.exe

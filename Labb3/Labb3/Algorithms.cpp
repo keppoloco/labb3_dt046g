@@ -1,5 +1,8 @@
 #include "Algorithms.h"
 #include "Datagenerator.h"
+
+#define MODULO_SIZE 20000
+
 bool sequential_search(std::vector<int>::iterator first, std::vector<int>::iterator last, const int& key)
 {
     for (auto iter = first; first != last; iter++) 
@@ -39,21 +42,26 @@ bool binary_search(std::vector<int>::iterator first, std::vector<int>::iterator 
 
 bool binary_tree_search(Node* root, const int& key)
 {
-	Node* ptr = root;
-	while (ptr != nullptr)
+	while (root != nullptr)
 	{
 		if (root->data == key)
 		{
 			return true;
 		}
-		else if (key < ptr->data)
+		else if (key < root->data)
 		{
-			ptr = ptr->left;
+			root = root->left;
 		}
 		else 
 		{
-			ptr = ptr->right;
+			root = root->right;
 		}
 	}
+	return false;
+}
+
+bool hash_table_search(std::vector<int>::iterator first, std::vector<int>::iterator last, const int& key)
+{
+	HashNode* pos = (first + (key % MODULO_SIZE));
 	return false;
 }

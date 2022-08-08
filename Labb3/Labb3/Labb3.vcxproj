@@ -148,6 +148,7 @@
     <ClInclude Include="Algorithms.h" />
     <ClInclude Include="Measurement.h" />
     <ClInclude Include="Datagenerator.h" />
+    <ClInclude Include="Node.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
