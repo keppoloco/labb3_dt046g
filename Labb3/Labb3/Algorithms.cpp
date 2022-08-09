@@ -60,8 +60,18 @@ bool binary_tree_search(Node* root, const int& key)
 	return false;
 }
 
-bool hash_table_search(std::vector<int>::iterator first, std::vector<int>::iterator last, const int& key)
+bool hash_table_search(std::vector<HashNode*>::iterator first, std::vector<HashNode*>::iterator last, const int& key)
 {
-	HashNode* pos = (first + (key % MODULO_SIZE));
+	HashNode* node_index = *(first + (key % std::distance(first, last)));
+	
+	while (node_index != nullptr)
+	{
+		if (node_index->data == key)
+		{
+			return true;
+		}
+		node_index = node_index->next;
+	}
+
 	return false;
 }

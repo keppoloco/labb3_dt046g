@@ -4,33 +4,39 @@
 #include "Algorithms.h"
 
 #define COUNT 10
-
 void print2DUtil(Node* root, int space);
+void printHash(std::vector<HashNode*> hash);
+
 int main()
 {
-	struct Node* tree = NULL;
+
+	// Prime number generator
 	// 2 3 5 7 11 13 => N = 15
 	auto vec = GetPrimeVector(15);
 
-	//for ()
-	//auto lower = partition(first, last, [mid](int x) {return x < mid; });
-	//auto higher = partition(first, last, [mid](int x) {return !(x > mid); });
-	/*for (int prime : vec) 
+	// Hash table
+	
+	std::vector<HashNode*> hash_table = CreateHashTable(vec.begin(), vec.end());
+	if (hash_table_search(hash_table.begin(), hash_table.end(), 23))
 	{
-		std::cout << prime << '\n';
+		std::cout << "Found data!!" << '\n';
 	}
+	else
+	{
+		std::cout << "Not found.\n";
+	}
+
+	// binary search
+	/*struct Node* tree = NULL;
+	tree = CreateBinarySearchTree(vec.begin(), vec.end());
 	
 	if (binary_search(vec.begin(), vec.end(), 3)) 
 	{
 		std::cout << "found element\n";
 	}*/
-	/*tree = InsertNode(tree, 2);
-	tree = InsertNode(tree, 3);
-	tree = InsertNode(tree, 5);
-	tree = InsertNode(tree, 7);
-	tree = InsertNode(tree, 11);
-	display(tree);
 
+	// Binary tree
+	/*tree = CreateBinarySearchTree(vec.begin(), vec.end());
 	if (binary_tree_search(tree, 7))
 	{
 		std::cout << "Found element!!\n";
@@ -40,18 +46,29 @@ int main()
 		std::cout << "Did not find element\n";
 	}*/
 
-	tree = CreateBinarySearchTree(vec.begin(), vec.end());
-	/*if (binary_tree_search(tree, 7))
-	{
-		std::cout << "Found element!!\n";
-	}
-	else
-	{
-		std::cout << "Did not find element\n";
-	}*/
-	print2DUtil(tree, 0);
+	// Print functions
+	printHash(hash_table);
+	/*print2DUtil(tree, 0);*/
 
 	return 0;
+}
+
+void printHash(std::vector<HashNode*> table) {
+	for (int i = 0; i < table.size(); i++) {
+		std::cout << std::endl;
+		std::cout << i << " --> ";
+		if (table.at(i) == nullptr)
+		{
+			continue;
+		}
+		else
+		{
+			std::cout << table.at(i)->data << " ";
+			if (table.at(i)->next != nullptr)
+				std::cout << table.at(i)->next->data;
+		}
+		std::cout << std::endl;
+	}
 }
 
 void print2DUtil(Node* root, int space)

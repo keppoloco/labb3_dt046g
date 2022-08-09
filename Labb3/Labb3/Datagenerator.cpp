@@ -56,18 +56,11 @@ Node* CreateBinarySearchTree(std::vector<int>::iterator first, std::vector<int>:
 		InsertNode(root, mid);
 	}
 
-	/*auto low = std::next(first);
-	auto high = std::next(last, -1);
-
-	root->left = CreateBinarySearchTree(low, last);
-	root->right = CreateBinarySearchTree(first, high);
-	*/
-	// Partition lower numbers than mid and higher numbers than mid separately to get median value for each node below current.
 	// t.ex. mid = 11
-	// lower => 7, 11, 13
-	//higher => 2, 3, 5
-	auto lower = partition(first, last, [mid](int x) {return x  < mid; });
-	auto higher = partition(first, last, [mid](int x) {return !(x > mid); });
+	// lower => 13
+	// higher => 2, 3, 5, 7
+	auto lower = std::partition(first, last, [mid](int x) {return x  < mid; });
+	auto higher = std::partition(first, last, [mid](int x) {return !(x > mid); });
 
 	CreateBinarySearchTree(first, lower);
 	CreateBinarySearchTree(higher, last);
@@ -93,4 +86,31 @@ Node* InsertNode(Node* root, const int& data)
 	}
 
 	return root;
+}
+
+std::vector<HashNode*> CreateHashTable(std::vector<int>::iterator first, std::vector<int>::iterator last)
+{
+	int size = std::distance(first, last);
+	std::vector<HashNode*> table(size);
+
+	for (auto iter = first; iter != last; iter++)
+	{
+		int key = *iter % size;
+		if (table.at(key) == nullptr)
+		{
+			table.at(key) = new HashNode(*iter);
+		}
+		else
+		{
+			HashNode* node = table.at(key);
+			while (node->next != nullptr)
+			{
+				node = node->next;
+			}
+			//table.at(key)->next = new HashNode(*iter);
+			node->next = new HashNode(*iter);
+		}
+	}
+
+	return table;
 }

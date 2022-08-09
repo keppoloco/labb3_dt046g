@@ -8,5 +8,7 @@
 std::vector<int> GetPrimeVector(const size_t n);
 Node* CreateBinarySearchTree(std::vector<int>::iterator first, std::vector<int>::iterator last);
 Node* InsertNode(Node*, const int&);
+std::vector<HashNode*> CreateHashTable(std::vector<int>::iterator first, std::vector<int>::iterator last);
+
 #endif // !PRIMENUMBERGENERATOR_H
 
