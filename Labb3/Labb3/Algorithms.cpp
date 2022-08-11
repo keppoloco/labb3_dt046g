@@ -1,8 +1,6 @@
 #include "Algorithms.h"
 #include "Datagenerator.h"
 
-#define MODULO_SIZE 20000
-
 bool sequential_search(std::vector<int>::iterator first, std::vector<int>::iterator last, const int& key)
 {
     for (auto iter = first; first != last; iter++) 
@@ -17,7 +15,6 @@ bool sequential_search(std::vector<int>::iterator first, std::vector<int>::itera
 
 bool binary_search(std::vector<int>::iterator first, std::vector<int>::iterator last, const int& key)
 {
-	std::cout << "avg: " << *first + distance(first, last) / 2 << '\n';
 	while (first <= last) 
 	{
 		auto mid = first + std::distance(first, last) / 2;

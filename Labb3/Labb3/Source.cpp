@@ -1,42 +1,61 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+
 #include "Datagenerator.h"
 #include "Algorithms.h"
+#include "Timer.h"
+#include "Measurement.h"
 
 #define COUNT 10
 void print2DUtil(Node* root, int space);
 void printHash(std::vector<HashNode*> hash);
 
+const int DATA_SIZE = 20000;
+const int REPETITIONS = 10;
+const int SAMPLES = 100;
+
 int main()
 {
+	std::vector<int> data;
+	std::vector<double> period(SAMPLES);
+
+	std::vector<HashNode*> hash_table;
+	Node* tree = NULL;
 
 	// Prime number generator
 	// 2 3 5 7 11 13 => N = 15
-	auto vec = GetPrimeVector(15);
-
-	// Hash table
+	auto vec = GetPrimeVector(5);
 	
-	std::vector<HashNode*> hash_table = CreateHashTable(vec.begin(), vec.end());
-	if (hash_table_search(hash_table.begin(), hash_table.end(), 23))
-	{
-		std::cout << "Found data!!" << '\n';
-	}
-	else
-	{
-		std::cout << "Not found.\n";
-	}
+	std::string filename[] = { "binary_search_tree.data", "binary_search.data", "hash_table.data", "sequential_search.data" };
 
-	// binary search
-	/*struct Node* tree = NULL;
-	tree = CreateBinarySearchTree(vec.begin(), vec.end());
+	data = GetPrimeVector(DATA_SIZE * REPETITIONS);
+
+	hash_table = CreateHashTable(data.begin(), data.end());
+	tree = CreateBinarySearchTree(data.begin(), data.end());
+
+	std::ofstream os;
+	os.open(filename[3], std::ios::out | std::ios::app);
+
+	if (os.is_open())
+	{
+		os << "N\t" << "T[ms]\t" << "dev[ms]\t" << "Samples\n";
+		for (int iter = 1; iter <= REPETITIONS; iter++)
+		{
+			for (int i = 0; i < SAMPLES; i++)
+			{
+				// number to find for each iteration
+				int number_to_find = data[rand() % DATA_SIZE];
+				// run it
+				period[i] = time_it(&binary_search, data.begin(), data.begin() + DATA_SIZE, number_to_find);
+			}
+			os << DATA_SIZE * iter << "\t" << average_value(period) << "\t" << std_dev(period) << "\t" << SAMPLES << '\n';
+		}
+		os.close();
+	}
 	
-	if (binary_search(vec.begin(), vec.end(), 3)) 
-	{
-		std::cout << "found element\n";
-	}*/
-
-	// Binary tree
 	/*tree = CreateBinarySearchTree(vec.begin(), vec.end());
+
 	if (binary_tree_search(tree, 7))
 	{
 		std::cout << "Found element!!\n";
@@ -45,16 +64,16 @@ int main()
 	{
 		std::cout << "Did not find element\n";
 	}*/
-
 	// Print functions
-	printHash(hash_table);
-	/*print2DUtil(tree, 0);*/
+	//printHash(hash_table);
+	//print2DUtil(tree, 0);
 
 	return 0;
 }
 
 void printHash(std::vector<HashNode*> table) {
-	for (int i = 0; i < table.size(); i++) {
+	for (int i = 0; i < table.size(); i++) 
+	{
 		std::cout << std::endl;
 		std::cout << i << " --> ";
 		if (table.at(i) == nullptr)
@@ -67,7 +86,6 @@ void printHash(std::vector<HashNode*> table) {
 			if (table.at(i)->next != nullptr)
 				std::cout << table.at(i)->next->data;
 		}
-		std::cout << std::endl;
 	}
 }
 

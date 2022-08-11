@@ -1,10 +1,35 @@
 #include "Datagenerator.h"
-
+#include <iostream>
 struct Node* root = NULL;
 
 std::vector<int> GetPrimeVector(const size_t n)
 {
 	size_t size = n;
+
+	std::vector<int> primes;
+	primes.push_back(2);
+
+	int i = 3;
+	while (primes.size() < size)
+	{
+		bool isPrime = true;
+		for (int j = 0; j < size && std::pow(primes[j], 2) <= i; j++)
+		{
+			if (i % primes[j] == 0)
+			{
+				isPrime = false;
+				break;
+			}
+		}
+		if (isPrime)
+		{
+			primes.push_back(i);
+			std::cout << i << " ";
+		}
+		i++;
+	}
+
+	/*size_t size = n;
 	std::vector<bool> prime_index(size, true);
 	prime_index[0] = false;
 	prime_index[1] = false;
@@ -34,7 +59,7 @@ std::vector<int> GetPrimeVector(const size_t n)
 			primes.push_back(prime);
 		}
 		prime++;
-	}
+	}*/
 	return primes;
 }
 
@@ -59,8 +84,8 @@ Node* CreateBinarySearchTree(std::vector<int>::iterator first, std::vector<int>:
 	// t.ex. mid = 11
 	// lower => 13
 	// higher => 2, 3, 5, 7
-	auto lower = std::partition(first, last, [mid](int x) {return x  < mid; });
-	auto higher = std::partition(first, last, [mid](int x) {return !(x > mid); });
+	auto lower = std::lower_bound(first, last, mid);
+	auto higher = std::upper_bound(first, last, mid);
 
 	CreateBinarySearchTree(first, lower);
 	CreateBinarySearchTree(higher, last);
@@ -107,7 +132,6 @@ std::vector<HashNode*> CreateHashTable(std::vector<int>::iterator first, std::ve
 			{
 				node = node->next;
 			}
-			//table.at(key)->next = new HashNode(*iter);
 			node->next = new HashNode(*iter);
 		}
 	}
