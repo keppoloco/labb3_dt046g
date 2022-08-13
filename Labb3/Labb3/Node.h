@@ -15,6 +15,5 @@ struct HashNode {
 	HashNode* next;
 };
 
-
 #endif // !NODE_H
 

@@ -24,7 +24,6 @@ std::vector<int> GetPrimeVector(const size_t n)
 		if (isPrime)
 		{
 			primes.push_back(i);
-			std::cout << i << " ";
 		}
 		i++;
 	}
@@ -116,10 +115,11 @@ Node* InsertNode(Node* root, const int& data)
 std::vector<HashNode*> CreateHashTable(std::vector<int>::iterator first, std::vector<int>::iterator last)
 {
 	int size = std::distance(first, last);
+	
 	std::vector<HashNode*> table(size);
 
 	for (auto iter = first; iter != last; iter++)
-	{
+	{	
 		int key = *iter % size;
 		if (table.at(key) == nullptr)
 		{
