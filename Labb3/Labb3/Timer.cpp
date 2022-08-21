@@ -22,7 +22,8 @@ double time_it(bool(*search)(std::vector<HashNode*>::iterator, std::vector<HashN
 double time_it(bool(*search)(Node*, const int&), Node* root, const int& number)
 {
     auto start = std::chrono::high_resolution_clock::now();
-    search(root, number);
+    for (int i = 0; i < 1000; i++)
+        search(root, number);
     auto stop = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::micro> total = (stop - start);
     return total.count();

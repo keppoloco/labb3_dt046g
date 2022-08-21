@@ -1,4 +1,9 @@
-﻿  Source.cpp
+﻿  Algorithms.cpp
+  Datagenerator.cpp
+C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Labb3\Datagenerator.cpp(20,21): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
 C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Labb3\Source.cpp(25,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Labb3\Source.cpp(78,20): warning C4018: '<': signed/unsigned mismatch
+  Timer.cpp
+  Generating Code...
   Labb3.vcxproj -> C:\Users\Tiimm\Documents\Plugg and stuff\labb3_dt046g\labb3_dt046g\Labb3\Debug\Labb3.exe

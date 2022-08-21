@@ -59,7 +59,7 @@ bool binary_tree_search(Node* root, const int& key)
 
 bool hash_table_search(std::vector<HashNode*>::iterator first, std::vector<HashNode*>::iterator last, const int& key)
 {
-	HashNode* node_index = *(first + (key % std::distance(first, last))); // key = 23, size = 20, 2 3 5 7 11 13 17 19 23
+	HashNode* node_index = *(first + (key % std::distance(first, last)));
 	
 	while (node_index != nullptr)
 	{

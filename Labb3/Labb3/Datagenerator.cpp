@@ -2,6 +2,10 @@
 #include <iostream>
 struct Node* root = NULL;
 
+// So I was using the theory of getting primes from the notes
+// but i noticed an issue whenever getting primes
+// if i sent n = 20000 i would only get approx. ~17 500 primes and not 20 000.
+// this made my program faulty down the line when accessing indexes in the vector
 std::vector<int> GetPrimeVector(const size_t n)
 {
 	size_t size = n;
@@ -80,12 +84,12 @@ Node* CreateBinarySearchTree(std::vector<int>::iterator first, std::vector<int>:
 		InsertNode(root, mid);
 	}
 
-	// t.ex. mid = 11
-	// lower => 13
-	// higher => 2, 3, 5, 7
+	// similiar to quicksort, divide and conquer
+	// partitions all the elements to either left of our value or right of our value depending if said value is lesser or larger
 	auto lower = std::lower_bound(first, last, mid);
 	auto higher = std::upper_bound(first, last, mid);
 
+	// recursively build the tree and its nodes, lesser nodes to the left and larger nodes to the right of current node "mid"
 	CreateBinarySearchTree(first, lower);
 	CreateBinarySearchTree(higher, last);
 	
@@ -120,11 +124,15 @@ std::vector<HashNode*> CreateHashTable(std::vector<int>::iterator first, std::ve
 
 	for (auto iter = first; iter != last; iter++)
 	{	
+		// this is our hashing function
 		int key = *iter % size;
+
+		// if no nodes exists in current hash function 
 		if (table.at(key) == nullptr)
 		{
 			table.at(key) = new HashNode(*iter);
 		}
+		// else we chain the nodes from left to right and enter our new hashnode that share the same hash as the previous
 		else
 		{
 			HashNode* node = table.at(key);
